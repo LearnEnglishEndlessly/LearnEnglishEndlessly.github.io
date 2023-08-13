@@ -1,3 +1,24 @@
 baseURL = 'http://learnenglishendlessly.github.io/'
 languageCode = 'en-us'
 title = 'Learn English Endlessly'
+canonifyurls = true
+paginate = 10
+
+[params]
+    brand = "Learn English Endlessly"
+    brand_image = "images/potential_logo.png"
+    description = "Welcome to Learn English Endlessly!"
+    menu = [
+        {Name = "Docs", URL = "/docs/", HasChildren = false},
+        {Name = "Docs too", URL = "/docs/", HasChildren = false}
+    ]
+    discord_url = "https://discord.com/channels/762721961901817877/762967529194651669"
+
+[module]
+    [[module.imports]]
+        path = "github.com/lukeorth/poison"
+        disable = false
+    [[module.imports]]
+        path = "github.com/gohugoio/hugo-mod-bootstrap-scss/v5"
+        disable = false
+
