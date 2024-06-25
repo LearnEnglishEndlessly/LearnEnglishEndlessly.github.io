@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1",
+    "question": "What is this website about?",
+    "answer": "This website aims to become a one-stop free English learning resources online so that you can learn on your own with ease besides participating our server's activities."
+  },
+  {
+    "id": "2",
+    "question": "What can I do here?",
+    "answer": "You can find exercises according to your current proficiency level (Beginner/Intermediate/Advanced) and the skill(s) you wish to work on, such as listening, reading, writing and speaking skills."
+  },
+  {
+    "id": "3",
+    "question": "Can I complete the exercises with friends?",
+    "answer": "Absolutely! You will make an impact by helping us cultivate a conducive learning environment in the server, thus making the server more active!"
+  },
+  {
+    "id": "4",
+    "question": "I have a problem with the website, what can I do?",
+    "answer": "We're sorry to hear that, please contact the admin via Discord to solve the issue you face."
+  }
+]
