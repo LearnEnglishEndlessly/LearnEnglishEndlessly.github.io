@@ -1,6 +1,6 @@
 // Dependencies
 import { NavLink, Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // FAQ data
 import data from "../../api/faq.json";
@@ -14,7 +14,7 @@ import Navigation from "./components/Navigation";
 // Components
 import { MenuButton, CloseButton } from "./components/Icons";
 import FAQ from "./components/Faq";
-import Footer from "./components/Footer"
+import Footer from "./components/Footer";
 
 function App() {
   // Navbar hook
@@ -23,44 +23,62 @@ function App() {
     setIsOpen(!isOpen);
   };
 
+  // Navbar scroll
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const handleScroll = () => {
+    const scrollPosition = window.scrollY;
+    setIsScrolled(scrollPosition > 0);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
       {/* Home Section */}
-      <div className="container w-page_center mx-auto" id="home">
+      <div className="w-4/5 mx-auto" id="home">
         {/* Navbar */}
         <div
-          className="flex justify-between font-medium pt-4 items-center sticky top-0"
+          className={`fixed top-0 left-0 w-full font-medium shadow-baseShadow ${
+            isScrolled ? "shadow-baseShadow" : "shadow-none"
+          }`}
           id="navbar"
         >
-          <NavLink to="#">
-            <img
-              src={Logo}
-              alt="logo.svg"
-              className="w-[70%] md:w-[80%] lg:w-full"
-            />
-          </NavLink>
+          <div className="w-4/5 flex justify-between items-center mx-auto">
+            <NavLink to="#">
+              <img
+                src={Logo}
+                alt="logo.svg"
+                className="w-[70%] md:w-[80%] py-5"
+              />
+            </NavLink>
 
-          {/* Mobile Navbar */}
-          <div className="hidden md:inline-block md:space-x-10 lg:space-x-20 text-lg">
-            <Navigation />
+            {/* Mobile Navbar */}
+            <div className="hidden md:inline-block md:space-x-10 lg:space-x-20 text-lg">
+              <Navigation />
+            </div>
+            <div className="md:hidden">
+              <button className="cursor-pointer" onClick={toggleNavbar}>
+                {isOpen ? <CloseButton /> : <MenuButton />}
+              </button>
+              {isOpen ? (
+                <div className="absolute pt-[5vh] space-y-4 z-10 top-full left-0 right-0 flex flex-col text-center">
+                  <Navigation />
+                </div>
+              ) : null}
+            </div>
+            {/* End of Mobile Navbar */}
           </div>
-          <div className="md:hidden">
-            <button className="cursor-pointer" onClick={toggleNavbar}>
-              {isOpen ? <CloseButton /> : <MenuButton />}
-            </button>
-            {isOpen ? (
-              <div className="absolute pt-[5vh] space-y-4 z-10 top-full left-0 right-0 flex flex-col text-center">
-                <Navigation />
-              </div>
-            ) : null}
-          </div>
-          {/* End of Mobile Navbar */}
-          
         </div>
         {/* End of Navbar */}
 
         {/* Banner */}
-        <div className="grid grid-cols-12 justify-between py-14 gap-y-10">
+        <div className="grid grid-cols-12 justify-between pt-28 gap-y-10">
           <div className="order-2 md:order-1 col-span-12 md:col-span-6 lg:col-span-8 my-auto">
             <h1 className="text-banner leading-none font-bold">
               Get Started. <br />
@@ -89,7 +107,7 @@ function App() {
       {/* End of Home Section */}
 
       {/* About Section */}
-      <div className="container w-page_center mx-auto" id="about">
+      <div className="w-4/5 mx-auto" id="about">
         <div className="grid grid-cols-12 justify-between py-14 gap-y-10">
           <div className="col-span-12 md:col-span-6">
             <img src={About} alt="about.png" />
@@ -109,16 +127,16 @@ function App() {
       {/* End of About Section */}
 
       {/* FAQ Section */}
-      <div className="container w-page_center mx-auto" id="faq">
+      <div className="w-4/5 mx-auto" id="faq">
         <div className="grid grid-cols-12 py-14">
           <div className="col-span-1"></div>
 
           <div className="col-span-12 md:col-span-10">
             <h2 className="text-header font-bold text-center">FAQs</h2>
             <div className="mt-5">
-              {data.map((faqdata) => (
+              {data.map((faqdata, i) => (
                 <FAQ
-                  key={faqdata._id}
+                  key={i}
                   question={faqdata.question}
                   answer={faqdata.answer}
                 />

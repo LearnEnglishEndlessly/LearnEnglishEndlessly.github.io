@@ -3,9 +3,6 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      width: {
-        page_center: "80%",
-      },
       boxShadow: {
         baseShadow: "0 10px 20px 0 rgb(217, 217, 217)",
       },

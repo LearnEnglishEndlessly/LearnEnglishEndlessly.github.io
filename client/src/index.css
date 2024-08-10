@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 * {
+    margin: 0;
+    padding: 0;
     scroll-behavior: smooth;
     background-color: #F4F4F4;
     /* font-family: "Roboto", sans-serif;

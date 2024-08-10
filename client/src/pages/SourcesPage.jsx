@@ -64,7 +64,7 @@ const SourcesPage = () => {
 
   return (
     <>
-      <div className="container w-page_center mx-auto py-8" id="sources">
+      <div className="container w-4/5 mx-auto py-8" id="sources">
         <Link
           to="/"
           className="flex items-center text-basefont gap-x-2 text-[#ABAFB5] w-fit"
@@ -82,7 +82,7 @@ const SourcesPage = () => {
           />
           <button
             type="submit"
-            className="bg-redlee py-4 px-7 rounded-r-md shadow-lg"
+            className="bg-redlee py-3 px-5 rounded-r-md shadow-lg"
           >
             <img
               src={Search}
@@ -92,8 +92,8 @@ const SourcesPage = () => {
           </button>
         </form>
 
-        <div className="flex items-end gap-2 md:gap-10 pb-8">
-          <div className="w-[31%]">
+        <div className="flex items-end gap-x-2 md:gap-x-5 pb-8">
+          <div className="w-full">
             <label className="text-basefont font-semibold">Aspect</label>
             <select
               className="bg-white py-3 w-full mt-4 cursor-pointer shadow-md outline-none"
@@ -109,7 +109,7 @@ const SourcesPage = () => {
               <option value="writing">Writing</option>
             </select>
           </div>
-          <div className="w-[31%]">
+          <div className="w-full">
             <label className="text-basefont font-semibold">Level</label>
             <select
               className="bg-white py-3 w-full mt-4 cursor-pointer shadow-md outline-none"
@@ -127,7 +127,7 @@ const SourcesPage = () => {
               <option value="C2">{`(C2) Proficiency`}</option>
             </select>
           </div>
-          <div className="w-[31%]">
+          <div className="w-full">
             <label className="text-basefont font-semibold">Topic</label>
             <select
               className="bg-white py-3 w-full mt-4 cursor-pointer shadow-md outline-none"
@@ -139,7 +139,7 @@ const SourcesPage = () => {
               <option value="">All</option>
             </select>
           </div>
-          <div className="w-[7%] mb-2">
+          <div className="w-1/5 mb-2">
             <span
               className="text-basefont text-[#ABAFB5] cursor-pointer"
               onClick={handleReset}
@@ -150,7 +150,7 @@ const SourcesPage = () => {
         </div>
 
         {/* PC or Tablet View */}
-        <div className="relative overflow-x-auto w-full max-h-[50vh] hidden md:inline-block">
+        <div className="relative overflow-x-auto w-full h-screen hidden md:inline-block">
           <table className="w-full text-left rtl:text-right text-base">
             <thead className="text-[#ABAFB5] sticky top-0 z-10">
               <tr>
@@ -170,10 +170,10 @@ const SourcesPage = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredData.map((item) => (
+              {filteredData.map((item, i) => (
                 <tr
                   className="border-t border-[#9D9D9D] text-base"
-                  key={item.id}
+                  key={i}
                 >
                   <td
                     scope="row"
@@ -213,12 +213,12 @@ const SourcesPage = () => {
           </table>
         </div>
 
-        <div className="relative overflow-x-auto w-full max-h-[50vh] md:hidden">
-          {filteredData.map((item) => (
+        <div className="relative overflow-x-auto w-full h-screen md:hidden">
+          {filteredData.map((item, i) => (
             <div className="p-4 bg-white border-t border-[rgb(157,157,157)]">
               <div className="flex justify-between items-center bg-white gap-x-4">
                 <div className="space-y-1 bg-white">
-                  <h1 className="bg-white">{item.topic}</h1>
+                  <h1 className="bg-white" key={i}>{item.topic}</h1>
                   <div className="space-x-1 bg-white">
                     <span
                       className={
